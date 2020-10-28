@@ -18,6 +18,13 @@ import { CoursesService } from './courses.service';
                 {{ course.releaseDate | date:'shortDate' }} <br>
                 {{ course.description | summary:30 }}
 
+                <!-- Capitalization -->
+                <br>
+                <input [(ngModel)]="inputText"/>
+                <br>
+                {{ inputText | toCapitals }}
+                <br>
+            
                 <!--'[]' binds the attribute with its value. When the value changes, DOM is updated-->
                 <div>
                     <img [src]="imgURL" style="width:300px;height:300px;"/>
@@ -96,7 +103,6 @@ export class CoursesComponent{
     // Hardcoded data that should be in the server =>
     // Less coupling
     //courses = ["Astronomy", "Astrophotography", "Angular"];
-    
 
     getTitle(){
         return this.title;
