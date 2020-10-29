@@ -5,21 +5,21 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses.component';
-import { CourseComponent } from './course/course.component';
 import { CoursesService } from './courses.service';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorsService } from './authors.service';
 import { SummaryPipe } from './summary.pipe';
-import { CapitalsPipe } from './course/capitals.pipe';
+import { CapitalsPipe } from './capitals.pipe';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
-    CourseComponent,
     AuthorsComponent,
     SummaryPipe,
-    CapitalsPipe
+    CapitalsPipe,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
