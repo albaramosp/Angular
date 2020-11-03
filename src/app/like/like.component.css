@@ -1,0 +1,11 @@
+svg {
+    color: gray;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    margin: 5px;
+}
+
+p {
+    font-size: xx-large;
+}

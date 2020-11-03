@@ -1,1 +1,15 @@
 <favorite [isFavorite]="post.isFavorite" (myChange)="onFavChanged($event)"></favorite>
+<br>
+<br>
+<tweet-like></tweet-like>
+<br>
+<br>
+<bootstrap-panel>
+    <div class="heading">Heading</div>
+    <div class="body">
+        <h2>Body</h2>
+        <p>Hello this is my content</p>
+    </div>
+    <ng-container class="heading">Another heading</ng-container>
+    <!--ng-container doesn't render an HTML element for just the text, it just takes the text-->
+</bootstrap-panel>
