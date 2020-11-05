@@ -1,15 +1,51 @@
+<!--
 <favorite [isFavorite]="post.isFavorite" (myChange)="onFavChanged($event)"></favorite>
-<br>
-<br>
-<tweet-like></tweet-like>
+-->
+
+<tweet-like [isLiked]="tweet.isLiked" [totalLikes]="tweet.totalLikes"></tweet-like>
 <br>
 <br>
 <bootstrap-panel>
-    <div class="heading">Heading</div>
-    <div class="body">
-        <h2>Body</h2>
-        <p>Hello this is my content</p>
-    </div>
-    <ng-container class="heading">Another heading</ng-container>
-    <!--ng-container doesn't render an HTML element for just the text, it just takes the text-->
+    <div class="heading" *ngIf="coursesExist(); then coursesList; else noCourses">List of courses</div>
+    <ng-template #coursesList>List of courses</ng-template>
+    <ng-template #noCourses>No courses yet</ng-template>
+    <div class="body" *ngIf="coursesExist(); then coursesContent; else addCourse"></div>
+    <ng-template #coursesContent>
+        <ul style="margin-bottom:30px;" class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode='map'" href='#'>Map View</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode='list'" href='#'>List View</a>
+            </li>
+        </ul>
+        <div [ngSwitch]="viewMode">
+            <div *ngSwitchCase="'map'">Map view content</div>
+            <div *ngSwitchCase="'list'">
+                <ul>
+                    <li style="margin-bottom:10px;" *ngFor="let course of courses">
+                        {{ course.name }}
+                        <button class="btn btn-primary" (click)="onRemove(course)">Remove</button>
+                    </li>
+                </ul>
+            </div>
+            <div *ngSwitchDefault>Otherwise</div>
+        </div>
+        <ul class="nav nav-pills" style="margin-left:30px; margin-top: 30px;">
+            <li class="nav-item">
+                <a class="nav-link active" (click)="onAdd()" href='#'>Add course</a>
+            </li>
+        </ul>
+    </ng-template>
+
+    <ng-template #addCourse>
+        <ul class="nav nav-pills" style="margin-left:30px; margin-top: 30px;">
+            <li class="nav-item">
+                <a class="nav-link active" (click)="onAdd()" href='#'>Add course</a>
+            </li>
+        </ul>
+    </ng-template>
+    
+    <!--<ng-container class="heading">Another heading</ng-container>
+    ng-container doesn't render an HTML element for just the text, it just takes the text-->
 </bootstrap-panel>

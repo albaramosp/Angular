@@ -12,8 +12,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./like.component.css']
 })
 export class LikeComponent implements OnInit {
-  totalLikes = 0;
-  isLiked = false;
+  @Input() totalLikes: number;
+  @Input() isLiked: boolean;
 
   ngOnInit(): void {
   }
@@ -25,7 +25,7 @@ export class LikeComponent implements OnInit {
 
     } else {
       this.totalLikes -= 1;
-      document.getElementById("likeBtn").style.color = "gray";
+      document.getElementById("likeBtn").style.color = "#ccc";
     }
 
     this.isLiked = !this.isLiked;
