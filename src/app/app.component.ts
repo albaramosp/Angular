@@ -18,20 +18,8 @@ export class AppComponent {
     totalLikes: 0
   }
 
-  courses = [
-    {
-      id: 1,
-      name: "Curso de python"
-    },
-    {
-      id: 2,
-      name: "Curso de java"
-    },
-    {
-      id: 3,
-      name: "Curso de angular"
-    }
-  ];
+  courses = [];
+  canAdd = true;
 
   viewMode = "list";
 
@@ -39,8 +27,29 @@ export class AppComponent {
     this.courses.push({id:4, name:"Nuevo curso"});
   }
 
+  loadCourses(){
+    this.courses = [
+      {
+        id: 1,
+        name: "Curso de python"
+      },
+      {
+        id: 2,
+        name: "Curso de java"
+      },
+      {
+        id: 3,
+        name: "Curso de angular"
+      }
+    ];
+  }
+
   onRemove(course){
     this.courses.splice(this.courses.indexOf(course), 1);
+  }
+
+  trackCourse(index, course){
+    return course ? course.id : undefined;
   }
 
   coursesExist(){

@@ -1,6 +1,7 @@
 <!--
 <favorite [isFavorite]="post.isFavorite" (myChange)="onFavChanged($event)"></favorite>
 -->
+<input type="text" [appInputFormat]="'lowercase'">See me change case!
 
 <tweet-like [isLiked]="tweet.isLiked" [totalLikes]="tweet.totalLikes"></tweet-like>
 <br>
@@ -22,8 +23,9 @@
         <div [ngSwitch]="viewMode">
             <div *ngSwitchCase="'map'">Map view content</div>
             <div *ngSwitchCase="'list'">
+                
                 <ul>
-                    <li style="margin-bottom:10px;" *ngFor="let course of courses">
+                    <li style="margin-bottom:10px;" *ngFor="let course of courses; trackBy: trackCourse">
                         {{ course.name }}
                         <button class="btn btn-primary" (click)="onRemove(course)">Remove</button>
                     </li>
@@ -33,7 +35,15 @@
         </div>
         <ul class="nav nav-pills" style="margin-left:30px; margin-top: 30px;">
             <li class="nav-item">
-                <a class="nav-link active" (click)="onAdd()" href='#'>Add course</a>
+                <a class="nav-link active" 
+                    (click)="onAdd()" 
+                    [ngStyle]="{
+                        'backgroundColor': canAdd ? 'blue': 'gray',
+                        'fontWeight': canAdd ? 'bold': 'normal'
+                    }"
+                    href='#'>
+                    Add course
+                </a>
             </li>
         </ul>
     </ng-template>
@@ -41,7 +51,18 @@
     <ng-template #addCourse>
         <ul class="nav nav-pills" style="margin-left:30px; margin-top: 30px;">
             <li class="nav-item">
-                <a class="nav-link active" (click)="onAdd()" href='#'>Add course</a>
+                <a class="nav-link active" 
+                    (click)="onAdd()" 
+                    [ngStyle]="{
+                        'backgroundColor': canAdd ? 'blue': 'gray',
+                        'fontWeight': canAdd ? 'bold': 'normal'
+                    }"
+                    href='#'>
+                    Add course
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" (click)="loadCourses()" href='#'>Load courses</a>
             </li>
         </ul>
     </ng-template>
